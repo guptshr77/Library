@@ -11,10 +11,10 @@ public class Digital extends LibraryItems{
 	private String type;
 	
 	// constructors
-	public Digital(int checkoutTime, int copiesAvailable, String length, String location, String title,
+	public Digital(int checkoutTime, int copiesAvailable, String length, String location, String title, String objectType,
 			String genre, String creator, String description, String type) {
 		
-		super(checkoutTime, copiesAvailable, length, location, title);
+		super(checkoutTime, copiesAvailable, length, location, title, objectType);
 		
 		this.genre = genre;
 		this.creator = creator;

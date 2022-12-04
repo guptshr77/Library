@@ -12,10 +12,10 @@ public class Books extends LibraryItems{
 	private String paper;
 	
 	// constructors 
-	public Books(int checkoutTime, int copiesAvailable, String length, String location, String title,
+	public Books(int checkoutTime, int copiesAvailable, String length, String location, String title, String objectType,
 			String genre, String author, String summary, String ageRange, String paper) {
 		
-		super(checkoutTime, copiesAvailable, length, location, title);
+		super(checkoutTime, copiesAvailable, length, location, title, objectType);
 		
 		this.genre = genre;
 		this.author = author;

@@ -21,17 +21,26 @@ public class AddRemoveDAO {
 	@Autowired 
 	private JdbcTemplate jdbcTemplate;
 	//remove items
+		//get type of object
+		public List<String> getType(int barcode){
+			String query = "SELECT objecttype FROM libraryitems WHERE barcode = " + barcode;
+			
+			return jdbcTemplate.query(query, 
+					(rs, rowNum) ->
+					new String(
+							rs.getString("objecttype")));
+		}
+	
 		//remove book 
 			// DELETE FROM book WHERE barcode = ?;
 			//DELETE FROM libraryitems WHERE barcode = ?;
 		public String removeBook(int barcode) {
-			String stmt = "DELETE FROM book WHERE barcode = ?";
+			String stmt = "DELETE FROM book WHERE barcode = " + barcode;
 			
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
 				public Boolean doInPreparedStatement(PreparedStatement ps)
 					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
 						
 						return ps.execute();
 				}
@@ -46,29 +55,19 @@ public class AddRemoveDAO {
 			//DELETE FROM book WHERE barcode = ?;
 			//DELETE FROM libraryitems WHERE barcode = ?;
 		public String removeAudioBook(int barcode) {
-			String stmt = "DELETE FROM audiobook WHERE barcode = ?";
 			
+			String stmt = "DELETE FROM audiobook WHERE barcode = " + barcode;
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
 				public Boolean doInPreparedStatement(PreparedStatement ps)
 					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
 						
 						return ps.execute();
 				}
 			});
 			
-			stmt = "DELETE FROM book WHERE barcode = ?";
+			removeBook(barcode);
 			
-			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
-				@Override
-				public Boolean doInPreparedStatement(PreparedStatement ps)
-					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
-						
-						return ps.execute();
-				}
-			});
 			removeLibraryItem(barcode);
 			
 			return "Audiobook deleted!";
@@ -77,13 +76,12 @@ public class AddRemoveDAO {
 			//DELETE FROM research WHERE barcode = ?;
 			//DELETE FROM libraryitems WHERE barcode = ?;
 		public String removeResearch(int barcode) {
-			String stmt = "DELETE FROM research WHERE barcode = ?";
+			String stmt = "DELETE FROM research WHERE barcode = " + barcode;
 			
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
 				public Boolean doInPreparedStatement(PreparedStatement ps)
 					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
 						
 						return ps.execute();
 				}
@@ -97,13 +95,12 @@ public class AddRemoveDAO {
 			//DELETE FROM digital WHERE barcode = ?;
 			//DELETE FROM libraryitems WHERE barcode = ?;
 		public String removeDigital(int barcode) {
-			String stmt = "DELETE FROM digital WHERE barcode = ?";
+			String stmt = "DELETE FROM digital WHERE barcode = " + barcode;
 			
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
 				public Boolean doInPreparedStatement(PreparedStatement ps)
 					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
 						
 						return ps.execute();
 				}
@@ -115,13 +112,12 @@ public class AddRemoveDAO {
 		
 		//delete libraryitem common for all of the above
 		private void removeLibraryItem(int barcode) {
-			String stmt = "DELETE FROM libraryitems WHERE barcode = ?";
+			String stmt = "DELETE FROM libraryitems WHERE barcode = " + barcode;
 			
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
 				public Boolean doInPreparedStatement(PreparedStatement ps)
 					throws SQLException, DataAccessException{
-						ps.setInt(1, barcode);
 						
 						return ps.execute();
 				}
@@ -133,7 +129,7 @@ public class AddRemoveDAO {
 			//INSERT INTO libraryitems(copiesavailable, itemlength, ilocation, title) VALUES (?,?,?,?);
 			//INSERT INTO book (barcode, genre, author, summary, agerange)VALUES (?,?,?,?,?);
 		public String addBook(Books book) {
-			addLibraryItem(book.getCopiesAvailable(), book.getLength(), book.getLocation(), book.getTitle());
+			addLibraryItem(book.getCopiesAvailable(), book.getLength(), book.getLocation(), book.getTitle(), book.getObjectType());
 			
 			String stmt = "INSERT INTO book (barcode, genre, author, summary, agerange)VALUES (?,?,?,?,?)";
 			
@@ -162,7 +158,7 @@ public class AddRemoveDAO {
 			//INSERT INTO audiobook (barcode, speaker) VALUES (?,?);
 		
 		public String addAudioBook(AudioBooks ab) {
-			addLibraryItem(ab.getCopiesAvailable(), ab.getLength(), ab.getLocation(), ab.getTitle());
+			addLibraryItem(ab.getCopiesAvailable(), ab.getLength(), ab.getLocation(), ab.getTitle(), ab.getObjectType());
 			
 			String stmt = "INSERT INTO book (barcode, genre, author, summary, agerange)VALUES (?,?,?,?,?);";
 			
@@ -202,7 +198,7 @@ public class AddRemoveDAO {
 			//INSERT INTO libraryitems(copiesavailable, itemlength, ilocation, title) VALUES (?,?,?,?);
 			//INSERT INTO research (barcode, publishdate, topic, publisher, researchtype)VALUES (?,?,?,?,?);
 		public String addResearch(Research research) {
-			addLibraryItem(research.getCopiesAvailable(), research.getLength(), research.getLocation(), research.getTitle());
+			addLibraryItem(research.getCopiesAvailable(), research.getLength(), research.getLocation(), research.getTitle(), research.getObjectType());
 			
 			String stmt = "INSERT INTO research (barcode, publishdate, topic, publisher, researchtype)VALUES (?,?,?,?,?)";
 			
@@ -230,7 +226,7 @@ public class AddRemoveDAO {
 			//INSERT INTO digital(barcode, genre, creator, digitaltype,description) VALUES (?,?,?,?,?);
 		
 		public String addDigital(Digital digital) {
-			addLibraryItem(digital.getCopiesAvailable(), digital.getLength(), digital.getLocation(), digital.getTitle());
+			addLibraryItem(digital.getCopiesAvailable(), digital.getLength(), digital.getLocation(), digital.getTitle(), digital.getObjectType());
 			
 			List<Integer> barcode = getBarcode(digital.getTitle());
 			
@@ -253,8 +249,8 @@ public class AddRemoveDAO {
 			return "Digital item added!";
 		}
 		
-		private void addLibraryItem(int copiesavailable, String itemlength, String ilocation, String title) {
-			String stmt = "INSERT INTO libraryitems(copiesavailable, itemlength, ilocation, title) VALUES (?,?,?,?)";
+		private void addLibraryItem(int copiesavailable, String itemlength, String ilocation, String title, String objectType) {
+			String stmt = "INSERT INTO libraryitems(copiesavailable, itemlength, ilocation, title, objecttype) VALUES (?,?,?,?,?)";
 			
 			jdbcTemplate.execute(stmt, new PreparedStatementCallback<Boolean>() {
 				@Override
@@ -264,6 +260,7 @@ public class AddRemoveDAO {
 						ps.setString(2, itemlength);
 						ps.setString(3, ilocation);
 						ps.setString(4, title);
+						ps.setString(5, objectType);
 						
 						return ps.execute();
 				}

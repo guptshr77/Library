@@ -1,5 +1,7 @@
 package com.uww.java102.library.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,12 @@ public class AddRemoveBO {
 	//remove digital
 	public String removeDigitalBO(int barcode) {
 		return ard.removeDigital(barcode);
+	}
+	//find out what type of object this is
+	public String getType(int barcode) {
+		List<String> type = ard.getType(barcode);
+		
+		return type.get(0);
 	}
 	
 	

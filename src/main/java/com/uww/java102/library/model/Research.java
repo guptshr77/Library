@@ -11,10 +11,10 @@ public class Research extends LibraryItems {
 	private String type;
 	
 	// constructors 
-	public Research(int checkoutTime, int copiesAvailable, String length, String location, String title,
+	public Research(int checkoutTime, int copiesAvailable, String length, String location, String title, String objectType,
 			int publishedDate, String topic, String publisher, String type) {
 		
-		super(checkoutTime, copiesAvailable, length, location, title);
+		super(checkoutTime, copiesAvailable, length, location, title, objectType);
 		
 		this.publishedDate = publishedDate;
 		this.topic = topic;

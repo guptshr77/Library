@@ -11,15 +11,17 @@ public abstract class LibraryItems {
 	private String length;
 	private String location;
 	private String title;
+	private String objectType;
 	
 	// constructors
-	public LibraryItems(int checkoutTime, int copiesAvailable, String length, String location, String title) {
+	public LibraryItems(int checkoutTime, int copiesAvailable, String length, String location, String title, String objectType) {
 		
 		this.checkoutTime = checkoutTime;
 		this.copiesAvailable = copiesAvailable;
 		this.length = length;
 		this.location = location;
 		this.title = title;
+		this.objectType = objectType;
 		
 	}
 	
@@ -81,6 +83,10 @@ public abstract class LibraryItems {
 		
 		return title;
 		
+	}
+	
+	public String getObjectType() {
+		return objectType;
 	}
 	
 	// abstract method to be implemented in subclasses 

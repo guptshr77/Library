@@ -20,7 +20,8 @@ public class LibraryTester {
 	    
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Wecome to the Library!");
+		System.out.println("Wecome to the Whitewater Public Library!");
+		System.out.println("---------------------------------------------------------------------------------------------");
 		System.out.println("How may we help you?\n(enter the number that coresponds to the task you want)");
 		System.out.println("\t1 - checkout\n\t2 - return\n\t3 - search\n\t4 - add item\n\t5 - remove item\n\t0 - quit");
 		int option = Integer.parseInt(scan.nextLine());
@@ -53,10 +54,11 @@ public class LibraryTester {
 				la.removeItem(scan);
 				
 			}
+			System.out.println("-----------------------------------------------------------------------------------------");
 			System.out.println("How may we help you?\n(enter the number that coresponds to the task you want)");
 			System.out.println("\t1 - checkout\n\t2 - return\n\t3 - search\n\t4 - add item\n\t5 - remove item\n\t0 - quit");
 			
-			option = scan.nextInt();
+			option = Integer.parseInt(scan.nextLine());
 			
 		}
 		

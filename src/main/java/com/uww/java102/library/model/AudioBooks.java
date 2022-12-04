@@ -8,10 +8,10 @@ public class AudioBooks extends Books{
 	private String speaker;
 	
 	// constructors
-	public AudioBooks(int checkoutTime, int copiesAvailable, String length, String location, String title,
+	public AudioBooks(int checkoutTime, int copiesAvailable, String length, String location, String title, String objectType,
 			String genre, String author, String summary, String ageRange, String speaker, String booktype) {
 		
-		super(checkoutTime, copiesAvailable, length, location, title, genre, author, summary, ageRange, booktype);
+		super(checkoutTime, copiesAvailable, length, location, title, objectType, genre, author, summary, ageRange, booktype);
 		
 		this.speaker = speaker;
 		

@@ -33,7 +33,7 @@ public class LibraryActions {
 //		int barcode = Integer.parseInt(cBarcode);
 		
 		System.out.print("Enter the barcode number of the book you would like to check out: ");
-		int barcode = scan.nextInt();
+		int barcode = Integer.parseInt(scan.nextLine());
 		
 		
 		LibraryItemsNonAbstract info = crib.checkoutItemBO(barcode);//ISSUE: nothing is coming back why?
@@ -41,7 +41,7 @@ public class LibraryActions {
 			System.out.println("Sorry, this item is not available at this time");
 		}else {
 			System.out.println("Checkout Completed!");
-			System.out.println("Return " + info.getTitle() + " in " + info.getCheckoutTime() + " days.");	
+			System.out.println("Return '" + info.getTitle() + "' in " + info.getCheckoutTime() + " days.");	
 		}
 		// ADD COPIES SUBTRACTION 
 	}
@@ -52,7 +52,7 @@ public class LibraryActions {
 //		String rBarcode = JOptionPane.showInputDialog("Enter the barcode number of the book you would like to return");
 //		int barcode = Integer.parseInt(rBarcode);
 		System.out.print("Enter the barcode number of the book you would like to return: ");
-		int barcode = scan.nextInt();
+		int barcode = Integer.parseInt(scan.nextLine());
 
 		// ADD ITEM CONFIRMATION
 		// ADD COPIES ADDITION
@@ -147,6 +147,7 @@ public class LibraryActions {
 		System.out.println("\tB - Book\n\tAB - Audiobook\n\tR - Research\n\tD - Digital Media");
 		System.out.print("Type: ");
 		String newitem = scan.nextLine(); 
+		newitem = newitem.toUpperCase();
 		
 		System.out.print("\nEnter the title of the item: ");
 		String title = scan.nextLine();
@@ -161,7 +162,7 @@ public class LibraryActions {
 		System.out.print("\nEnter the location it belongs in, in the library: ");
 		String location = scan.nextLine();
 
-		if(newitem.toUpperCase().contains("B")) {
+		if(newitem.contains("B")) {
 			
 			System.out.print("\nEnter the genre of the book: ");
 			String genre = scan.nextLine();
@@ -180,16 +181,16 @@ public class LibraryActions {
 			
 			if(newitem.contains("A")) {
 				
-				System.out.print("\nEnter the speaker of the book");
+				System.out.print("\nEnter the speaker of the book: ");
 				String speaker = scan.nextLine();
 				
 				AudioBooks audioBook = new AudioBooks(21, copiesAvailable, 
-						length, location, title, genre, author, summary, ageRange, booktype, speaker);
+						length, location, title,"audiobook" , genre, author, summary, ageRange, booktype, speaker);
 				
 				message = arb.addAudioBookBO(audioBook);
 			}else {
 				Books book = new Books(21, copiesAvailable, length, location,
-						title, genre, author, summary, ageRange, booktype);
+						title,"book" , genre, author, summary, ageRange, booktype);
 				message = arb.addBookBO(book);
 			}	
 		}
@@ -208,7 +209,7 @@ public class LibraryActions {
 			String type = scan.nextLine();
 			
 			Research research = new Research(15, copiesAvailable, length, 
-					location, title, publishedDate, topic, publisher, type);
+					location, title,"research" , publishedDate, topic, publisher, type);
 			message = arb.addResearchBO(research);
 		}
 		else if(newitem.equalsIgnoreCase("D")) {
@@ -226,7 +227,7 @@ public class LibraryActions {
 			String type = scan.nextLine();
 			
 			Digital digital = new Digital(7, copiesAvailable, length,
-					location, title, genre, creator, description, type);
+					location, title,"digital" , genre, creator, description, type);
 			message = arb.addDigitalBO(digital);
 		}
 		
@@ -236,15 +237,23 @@ public class LibraryActions {
 	public void removeItem(Scanner scan) {
 		
 		System.out.print("Enter the barcode of a library item to remove: ");
-		int barcode = scan.nextInt();
-	
+		int barcode = Integer.parseInt(scan.nextLine());
 		
-		arb.removeBookBO(barcode);
-		arb.removeAudioBookBO(barcode);
-		arb.removeResearchBO(barcode);
-		arb.removeDigitalBO(barcode);
+		String message = "";
 		
-		System.out.println("Item Removed");
+		String type = arb.getType(barcode);
+		
+		if(type.equals("audiobook")) {
+			message = arb.removeAudioBookBO(barcode);
+		}else if(type.equals("book")) {
+			message = arb.removeBookBO(barcode);
+		}else if(type.equals("research")) {
+			message = arb.removeResearchBO(barcode);
+		}else {
+			message = arb.removeDigitalBO(barcode);
+		}
+		
+		System.out.println(message);
 
 		
 	}
