@@ -75,7 +75,7 @@ public class LibraryActions {
 		System.out.println("What type of Item would you like to search for? \n"
 				+ "(enter the letter that corresponds to what you want)");
 		System.out.println("\tB - Book\n\tAB - Audiobook\n\tR - Research\n\tD - Digital Media\n");
-		String searchItem = scan.next();
+		String searchItem = scan.nextLine();
 		
 		System.out.print("Enter the title of a library item you want to find (case sensitive): ");
 		String title = scan.nextLine();
@@ -108,7 +108,7 @@ public class LibraryActions {
 
 			// ADD ASKING USER FOR BARCODE NUMBER TO LOOK AT ITEM MORE CLOSELY 
 			System.out.print("Please type in the barcode of the item you would like more details of: ");
-			int barcode = scan.nextInt();
+			int barcode = Integer.parseInt(scan.nextLine());
 			
 			// ADD SHOW INDPETH SUMMARY
 			if (searchItem.equalsIgnoreCase("B")) {
