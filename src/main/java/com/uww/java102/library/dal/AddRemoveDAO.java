@@ -66,8 +66,10 @@ public class AddRemoveDAO {
 				}
 			});
 			
+			//call remove book 
 			removeBook(barcode);
 			
+			//call library item
 			removeLibraryItem(barcode);
 			
 			return "Audiobook deleted!";
@@ -86,6 +88,7 @@ public class AddRemoveDAO {
 						return ps.execute();
 				}
 			});
+			//call remove library items
 			removeLibraryItem(barcode);
 			
 			return "Research item deleted!";
@@ -105,6 +108,7 @@ public class AddRemoveDAO {
 						return ps.execute();
 				}
 			});
+			//call remove library item
 			removeLibraryItem(barcode);
 			
 			return "Digital item deleted!";
@@ -269,6 +273,7 @@ public class AddRemoveDAO {
 			//ASK HOW TO GET PRIMARY KEY OF AN OBJECT YOU JUST CREATED
 		}
 		
+		//get barcode to add items 
 		@SuppressWarnings("deprecation")
 		private List<Integer> getBarcode(String title) {
 			String query = "SELECT barcode FROM libraryitems WHERE title = '" + title + "'";

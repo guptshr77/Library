@@ -17,6 +17,7 @@ import com.uww.java102.library.model.Research;
 @Component
 public class LibraryActions {
 	
+	//autowired objects 
 	@Autowired
 	private SearchBO sb;
 	@Autowired
@@ -32,50 +33,47 @@ public class LibraryActions {
 //		String cBarcode = JOptionPane.showInputDialog("Enter the barcode number of the book you would like to check out");
 //		int barcode = Integer.parseInt(cBarcode);
 		
+		//get batcode of item they want to check out
 		System.out.print("Enter the barcode number of the book you would like to check out: ");
 		int barcode = Integer.parseInt(scan.nextLine());
 		
 		
-		LibraryItemsNonAbstract info = crib.checkoutItemBO(barcode);//ISSUE: nothing is coming back why?
+		//call checkout item Business object
+		LibraryItemsNonAbstract info = crib.checkoutItemBO(barcode);
+		//if returned is null, book can't be checked out
 		if(info.getTitle().equals(null)) {
 			System.out.println("Sorry, this item is not available at this time");
 		}else {
+			//else checkout complete 
 			System.out.println("Checkout Completed!");
 			System.out.println("Return '" + info.getTitle() + "' in " + info.getCheckoutTime() + " days.");	
 		}
-		// ADD COPIES SUBTRACTION 
 	}
 	
+	//return items that were checked out
 	public void returnItem(Scanner scan) {
 		// ask user for a barcode number
 		
 //		String rBarcode = JOptionPane.showInputDialog("Enter the barcode number of the book you would like to return");
 //		int barcode = Integer.parseInt(rBarcode);
+		
+		//get barcode 
 		System.out.print("Enter the barcode number of the book you would like to return: ");
 		int barcode = Integer.parseInt(scan.nextLine());
-
-		// ADD ITEM CONFIRMATION
-		// ADD COPIES ADDITION
-
-		// ADD ERROR FOR INCORRECT BARCODE
-		try {
+		
+		//check if 
 			String message = crib.returnItemBO(barcode);
 			System.out.println(message);
-		} catch(NullPointerException e) {
-			System.out.println("Sorry this book is not available");
-		}
-		
 
-		
 	}
 	
+	//search database by title
 	public void searchItem(Scanner scan) {
-
-		
+		//get input 
 		System.out.println("What type of Item would you like to search for? \n"
 				+ "(enter the letter that corresponds to what you want)");
 		System.out.println("\tB - Book\n\tAB - Audiobook\n\tR - Research\n\tD - Digital Media\n");
-		String searchItem = scan.nextLine();
+		String searchItem = scan.nextLine(); //get what type 
 		
 		System.out.print("Enter the title of a library item you want to find (case sensitive): ");
 		String title = scan.nextLine();
@@ -141,7 +139,8 @@ public class LibraryActions {
 	public void addItem(Scanner scan) {
 
 		String message = "";
-
+		
+		//get type of item to object
 		System.out.println("What type of Item would you like to add to the library? \n"
 				+ "(enter the letter that corresponds to what you want)");
 		System.out.println("\tB - Book\n\tAB - Audiobook\n\tR - Research\n\tD - Digital Media");
@@ -162,6 +161,7 @@ public class LibraryActions {
 		System.out.print("\nEnter the location it belongs in, in the library: ");
 		String location = scan.nextLine();
 
+		//if book
 		if(newitem.contains("B")) {
 			
 			System.out.print("\nEnter the genre of the book: ");
@@ -179,6 +179,7 @@ public class LibraryActions {
 			System.out.print("\nEnter the type of book (paper or audiobook):");
 			String booktype = scan.nextLine();
 			
+			//if audiobook
 			if(newitem.contains("A")) {
 				
 				System.out.print("\nEnter the speaker of the book: ");
@@ -188,12 +189,14 @@ public class LibraryActions {
 						length, location, title,"audiobook" , genre, author, summary, ageRange, booktype, speaker);
 				
 				message = arb.addAudioBookBO(audioBook);
+			//if book
 			}else {
 				Books book = new Books(21, copiesAvailable, length, location,
 						title,"book" , genre, author, summary, ageRange, booktype);
 				message = arb.addBookBO(book);
 			}	
 		}
+		//if research
 		else if(newitem.equalsIgnoreCase("R")) {
 			
 			System.out.print("\nEnter the year the research book was published: ");
@@ -212,6 +215,7 @@ public class LibraryActions {
 					location, title,"research" , publishedDate, topic, publisher, type);
 			message = arb.addResearchBO(research);
 		}
+		//if digital
 		else if(newitem.equalsIgnoreCase("D")) {
 			
 			System.out.print("\nEnter the genre of the digital media: ");
@@ -234,6 +238,7 @@ public class LibraryActions {
 		System.out.println(message);
 	}
 	
+	//removes item 
 	public void removeItem(Scanner scan) {
 		
 		System.out.print("Enter the barcode of a library item to remove: ");
@@ -243,6 +248,7 @@ public class LibraryActions {
 		
 		String type = arb.getType(barcode);
 		
+		//What kind of object it is to call method to remove accordingly
 		if(type.equals("audiobook")) {
 			message = arb.removeAudioBookBO(barcode);
 		}else if(type.equals("book")) {

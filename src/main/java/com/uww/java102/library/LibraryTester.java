@@ -20,6 +20,7 @@ public class LibraryTester {
 	    
 		Scanner scan = new Scanner(System.in);
 		
+		//Intro to application
 		System.out.println("Wecome to the Whitewater Public Library!");
 		System.out.println("---------------------------------------------------------------------------------------------");
 		System.out.println("How may we help you?\n(enter the number that coresponds to the task you want)");
@@ -29,31 +30,37 @@ public class LibraryTester {
 		// loop to continually do different tasks 
 		while(option != 0) {
 		
+			//check out item 
 			if (option == 1) {
 				
 				la.checkoutItem(scan);
 				
 			}
+			//return items that were checked out
 			else if (option == 2) {
 				
 				la.returnItem(scan);
 				
 			}
+			//search the database by title 
 			else if (option == 3) {
 				
 				la.searchItem(scan);
 				
 			}
+			//add items to the database
 			else if (option == 4) {
 				
 				la.addItem(scan);
 				
 			}
+			//remove items from the database
 			else if (option == 5) {
 				
 				la.removeItem(scan);
 				
 			}
+			//go through the while loop again 
 			System.out.println("-----------------------------------------------------------------------------------------");
 			System.out.println("How may we help you?\n(enter the number that coresponds to the task you want)");
 			System.out.println("\t1 - checkout\n\t2 - return\n\t3 - search\n\t4 - add item\n\t5 - remove item\n\t0 - quit");

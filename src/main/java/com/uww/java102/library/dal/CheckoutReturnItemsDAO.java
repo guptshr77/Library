@@ -32,6 +32,7 @@ public class CheckoutReturnItemsDAO {
 		return checkoutinfo(barcode);
 	}
 	
+	//get info to print out 
 	private List<LibraryItemsNonAbstract> checkoutinfo(int barcode){
 		String query = "SELECT title, checkoutTime, copiesavailable FROM libraryitems WHERE barcode = " + barcode;
 		
