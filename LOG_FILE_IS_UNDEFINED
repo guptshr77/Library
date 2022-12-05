@@ -1609,3 +1609,29 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2022-12-04 16:48:38.319  INFO 25128 --- [restartedMain] com.uww.java102.library.LibraryTester    : Started LibraryTester in 3.272 seconds (JVM running for 3.821)
 2022-12-04 16:48:57.784  INFO 25128 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
 2022-12-04 16:48:58.154  INFO 25128 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-12-04 21:11:24.732  INFO 29472 --- [restartedMain] com.uww.java102.library.LibraryTester    : Starting LibraryTester using Java 11.0.13 on Sona-PC with PID 29472 (C:\All Personal or Other Documents\Whitewater\Classes 2022 Fall Semester\Intermediate Java\LibraryWorkspace\Library\target\classes started by shrey in C:\All Personal or Other Documents\Whitewater\Classes 2022 Fall Semester\Intermediate Java\LibraryWorkspace\Library)
+2022-12-04 21:11:24.733  INFO 29472 --- [restartedMain] com.uww.java102.library.LibraryTester    : No active profile set, falling back to default profiles: default
+2022-12-04 21:11:24.790  INFO 29472 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-04 21:11:24.790  INFO 29472 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-04 21:11:26.081  INFO 29472 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-04 21:11:26.091  INFO 29472 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-04 21:11:26.091  INFO 29472 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2022-12-04 21:11:26.161  INFO 29472 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-04 21:11:26.161  INFO 29472 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1370 ms
+2022-12-04 21:11:26.661  INFO 29472 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-04 21:11:26.698  INFO 29472 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-04 21:11:26.711  INFO 29472 --- [restartedMain] com.uww.java102.library.LibraryTester    : Started LibraryTester in 2.446 seconds (JVM running for 2.821)
+2022-12-04 21:11:53.530  INFO 24904 --- [restartedMain] com.uww.java102.library.LibraryTester    : Starting LibraryTester using Java 11.0.13 on Sona-PC with PID 24904 (C:\All Personal or Other Documents\Whitewater\Classes 2022 Fall Semester\Intermediate Java\LibraryWorkspace\Library\target\classes started by shrey in C:\All Personal or Other Documents\Whitewater\Classes 2022 Fall Semester\Intermediate Java\LibraryWorkspace\Library)
+2022-12-04 21:11:53.531  INFO 24904 --- [restartedMain] com.uww.java102.library.LibraryTester    : No active profile set, falling back to default profiles: default
+2022-12-04 21:11:53.572  INFO 24904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-12-04 21:11:53.573  INFO 24904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-12-04 21:11:54.719  INFO 24904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-12-04 21:11:54.727  INFO 24904 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-12-04 21:11:54.727  INFO 24904 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2022-12-04 21:11:54.787  INFO 24904 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-12-04 21:11:54.788  INFO 24904 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1215 ms
+2022-12-04 21:11:55.219  INFO 24904 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-12-04 21:11:55.249  INFO 24904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-12-04 21:11:55.260  INFO 24904 --- [restartedMain] com.uww.java102.library.LibraryTester    : Started LibraryTester in 2.13 seconds (JVM running for 2.542)
+2022-12-04 21:13:26.009  INFO 24904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-12-04 21:13:26.294  INFO 24904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

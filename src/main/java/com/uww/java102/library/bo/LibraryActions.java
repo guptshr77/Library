@@ -29,10 +29,6 @@ public class LibraryActions {
 	// method to checkout a library item
 	public void checkoutItem(Scanner scan) {
 		
-		// ask user for a barcode number
-//		String cBarcode = JOptionPane.showInputDialog("Enter the barcode number of the book you would like to check out");
-//		int barcode = Integer.parseInt(cBarcode);
-		
 		//get batcode of item they want to check out
 		System.out.print("Enter the barcode number of the book you would like to check out: ");
 		int barcode = Integer.parseInt(scan.nextLine());
@@ -52,10 +48,6 @@ public class LibraryActions {
 	
 	//return items that were checked out
 	public void returnItem(Scanner scan) {
-		// ask user for a barcode number
-		
-//		String rBarcode = JOptionPane.showInputDialog("Enter the barcode number of the book you would like to return");
-//		int barcode = Integer.parseInt(rBarcode);
 		
 		//get barcode 
 		System.out.print("Enter the barcode number of the book you would like to return: ");
