@@ -77,7 +77,7 @@ public class Books extends LibraryItems{
 	@Override
 	public String toString() {
 		
-		return String.format("%s : %s \n\t%s: %d \n\t%s: %s /n", this.getClass().getSimpleName(), 
+		return String.format("%s : %s \n\t%s: %d \n\t%s: %s \n", this.getClass().getSimpleName(), 
 				super.getTitle(), "barcode", super.getBarcode(), "author", getAuthor()); 
 		
 	}
@@ -86,7 +86,7 @@ public class Books extends LibraryItems{
 	@Override
 	public String Summary() {
 			
-		return String.format("%s \n\t%s: %s \n\t%s: %s \n\t%s: %s \n\t%s: %s \n", super.Summary(), 
+		return String.format("%s \n\t%s: %s \n\t%s: %s \n\t%s: %s \n\t%s: %s\n", super.Summary(), 
 				"genre", getGenre(), "author", getAuthor(), "summary", getSummary(), "age range", getAgeRange());
 			
 	}
